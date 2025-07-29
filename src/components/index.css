@@ -1,0 +1,68 @@
+/* index.css — Global Styles */
+
+/* 1. CSS Reset + base variables */
+:root {
+  --font-body: 'Inter', system-ui, sans-serif;
+  --color-bg: #ffffff;
+  --color-text: #111111;
+  --color-accent: #1e90ff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* 2. Improve text legibility */
+body {
+  line-height: 1.6;
+  letter-spacing: 0.01rem;
+}
+
+/* 3. Link behavior */
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* 4. Utility classes (lightweight) */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* 5. Accessibility */
+:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* 6. Scrollbar minimalism (optional) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #cccccc;
+  border-radius: 10px;
+}
