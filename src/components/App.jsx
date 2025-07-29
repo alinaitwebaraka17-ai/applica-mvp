@@ -1,62 +1,30 @@
 // src/App.jsx
-import { lazy, Suspense, useContext, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
-import { UserProvider, UserContext } from "./context/UserContext";
+import React from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Feed from "./components/Feed";
+import Missions from "./components/Missions";
+import Profile from "./components/Profile";
+import PurposeTest from "./components/PurposeTest";
+import Onboarding from "./components/Onboarding";
 import Navbar from "./components/Navbar";
-import Loader from "./components/Loader"; // Optional: Fallback UI
-import ErrorBoundary from "./components/ErrorBoundary"; // New: Global safety net
-
-// Lazy loaded routes for code splitting
-const Feed = lazy(() => import("./components/Feed"));
-const Missions = lazy(() => import("./components/Missions"));
-const PurposeTest = lazy(() => import("./components/PurposeTest"));
-const Profile = lazy(() => import("./components/Profile"));
-const Onboarding = lazy(() => import("./components/Onboarding"));
-
-function ScrollToTop() {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-}
-
-function AppRoutes() {
-  const { user, loading } = useContext(UserContext);
-
-  if (loading) return <Loader />;
-
-  return (
-    <>
-      {user && <Navbar />}
-      <ScrollToTop />
-      <Suspense fallback={<Loader />}>
-        <Routes>
-          {!user ? (
-            <Route path="*" element={<Onboarding />} />
-          ) : (
-            <>
-              <Route path="/" element={<Feed />} />
-              <Route path="/missions" element={<Missions />} />
-              <Route path="/purpose-test" element={<PurposeTest />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="*" element={<Navigate to="/" />} />
-            </>
-          )}
-        </Routes>
-      </Suspense>
-    </>
-  );
-}
+import { UserProvider } from "./context/UserContext";
 
 export default function App() {
   return (
     <UserProvider>
-      <Router>
-        <ErrorBoundary>
-          <AppRoutes />
-        </ErrorBoundary>
-      </Router>
+      <BrowserRouter>
+        <div className="min-h-screen pb-14 bg-gray-50">
+          <Routes>
+            <Route path="/" element={<Navigate to="/onboarding" replace />} />
+            <Route path="/onboarding" element={<Onboarding />} />
+            <Route path="/feed" element={<Feed />} />
+            <Route path="/missions" element={<Missions />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/purpose-test" element={<PurposeTest />} />
+          </Routes>
+          <Navbar />
+        </div>
+      </BrowserRouter>
     </UserProvider>
   );
 }
