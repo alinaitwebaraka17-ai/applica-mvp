@@ -1,0 +1,31 @@
+{
+  "name": "applica",
+  "version": "1.0.0",
+  "description": "Gen Z Purpose & Mission Discovery MVP",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .js,.jsx",
+    "format": "prettier --write .",
+    "analyze": "vite build --plugin @rollup/plugin-visualizer"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.1.0",
+    "@rollup/plugin-visualizer": "^5.10.4",
+    "autoprefixer": "^10.4.15",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.33.2",
+    "postcss": "^8.4.32",
+    "prettier": "^3.2.5",
+    "tailwindcss": "^3.4.3",
+    "vite": "^5.2.10",
+    "vite-plugin-pwa": "^0.18.3"
+  }
+}
